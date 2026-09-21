@@ -22,14 +22,14 @@ Abra http://127.0.0.1:4173. Clique em **Preencher** para usar a conta fictícia 
 ### Executar testes
 
 ```bash
-npm test                             # regras de negócio, persistência simulada e HTTP
-npx playwright install chromium firefox # instalar os navegadores uma vez
-npm run test:e2e                     # dez cenários em dois navegadores
-npm run check                        # unitários + E2E
-npm run test:e2e:report              # relatório HTML local
+npm test                               # regras de negócio, persistência simulada e HTTP
+npx playwright install chromium firefox  # instalar os navegadores uma vez
+npm run test:e2e                       # dez cenários em dois navegadores
+npm run check                          # unitários + E2E
+npm run test:e2e:report                # relatório HTML local
 ```
 
-O GitHub Actions roda no push à main, em pull requests e por execução manual. Resultados e evidências de falha ficam em **Actions**; screenshots, traces e relatório HTML são preservados por sete dias nas execuções que falharem.
+O GitHub Actions roda no push à main, em pull requests e por execução manual. Resultados e evidências ficam em **Actions**: relatórios HTML e capturas de login negativo e painel demo são guardados por sete dias mesmo quando os testes aprovam; traces adicionais ficam disponíveis nas falhas.
 
 ## Navegar pela estrutura
 
@@ -43,6 +43,7 @@ O GitHub Actions roda no push à main, em pull requests e por execução manual.
 | `tests/e2e/` | Jornadas funcionais automatizadas com Playwright |
 | [`docs/requisitos.md`](docs/requisitos.md) | Requisitos e critérios de aceite |
 | [`docs/plano-de-testes.md`](docs/plano-de-testes.md) | Estratégia, dados e matriz CT → RF |
+| [`docs/casos-de-teste-manuais.md`](docs/casos-de-teste-manuais.md) | Roteiros manuais detalhados ainda não executados |
 | [`docs/modelo-bug-report.md`](docs/modelo-bug-report.md) | Modelo de registro de defeito, sem bugs inventados |
 | [`docs/relatorio-de-execucao.md`](docs/relatorio-de-execucao.md) | Resultados observados e bloqueios explícitos |
 | `.github/workflows/qa.yml` | CI unitária e navegador em matriz |

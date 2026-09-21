@@ -1,17 +1,22 @@
 # Relatório de execução — 21/09/2026
 
-## Validação local concluída
+## Evidência remota: GitHub Actions
 
-- `npm test`: **27 aprovados, 0 falhas**. Regras de negócio, persistência com armazenamento simulado e servidor HTTP de arquivos estáticos.
-- Verificações sintáticas (`node --check`): sem erro no código inspecionado.
-- Servidor local: HTTP 200 para a página principal, comprovado nos testes HTTP.
+- **Execução inicial verificada:** [workflow da PR #1 — run 35638859911](https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/runs/35638859911), commit `3a8b17cfb0dd5dfc37daea4318b3fb333c7afa4d`.
+- **Unitários/integração:** 27 aprovados, 0 falhas, executados em cada um dos dois jobs da matriz.
+- **E2E Playwright:** dez casos aprovados no Chromium **e** dez no Firefox; nenhuma falha observada nessa execução inicial.
+- **Instalação:** `npm ci` concluiu em ambos os jobs da CI.
 
-## Testes aguardando confirmação na CI
+## Validação no ambiente local
 
-- Os **dez cenários E2E estão escritos**, configurados para Chromium e Firefox, mas **não foram aprovados localmente**: o navegador do ambiente bloqueia a navegação (`ERR_BLOCKED_BY_ADMINISTRATOR`).
-- `npm ci` não pôde instalar Playwright localmente: DNS da registry npm falhou com `EAI_AGAIN`.
-- GitHub Actions instalará as dependências e executará os navegadores; **consultar a execução vinculada ao commit na aba Actions antes de declarar E2E aprovado.**
+- `npm test`: 27 aprovados, zero falhas.
+- Verificação de sintaxe dos módulos com `node --check`: sem erros.
+- A execução E2E local ficou bloqueada: navegador retorna `ERR_BLOCKED_BY_ADMINISTRATOR` até em páginas de teste e a registry npm não responde (`EAI_AGAIN`). Esse bloqueio é **do ambiente local**, não invalida os resultados efetivos da CI acima.
 
-## Limitações
+## Evidências de screenshots e última execução
 
-Não houve auditoria completa de acessibilidade, carga, segurança de produção, API REST ou backend. Não atribuir aprovação a testes não executados. Resultado de CI deve ser documentado com link da execução, hash e data após confirmação.
+O workflow anexa screenshots de fluxos fictícios ao relatório HTML e publica um artefato `playwright-<navegador>` por job, inclusive em sucesso, retido por sete dias. Para comunicar resultados após alterações, **verificar a execução mais recente da branch `main` na aba [Actions](https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions)**. Uma execução aprovada em commit anterior não garante que alterações posteriores estejam aprovadas.
+
+## Fora do escopo
+
+Não há auditoria completa de acessibilidade, segurança de produção, carga ou API REST. Casos manuais estão documentados, mas não há execução manual declarada; consulte [casos manuais](casos-de-teste-manuais.md). Defeitos não são simulados como se fossem encontrados.

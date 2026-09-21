@@ -50,19 +50,21 @@ test('CT-03: cadastro duplicado é bloqueado independentemente da capitalizaçã
   await expect(page.getByRole('alert')).toContainText('já está cadastrado');
 });
 
-test('CT-04: credenciais inválidas não permitem login', async ({ page }) => {
+test('CT-04: credenciais inválidas não permitem login', async ({ page }, testInfo) => {
   await page.goto('/');
   await page.getByLabel('E-mail').fill('naoexiste@example.com');
   await page.getByLabel('Senha').fill('Qualquer123');
   await page.getByRole('button', { name: 'Entrar no painel' }).click();
   await expect(page.getByRole('alert')).toContainText('incorretos');
   await expect(page.getByRole('heading', { name: 'Entre no seu espaço.' })).toBeVisible();
+  await testInfo.attach('login-invalido', { body: await page.screenshot({ fullPage: true }), contentType: 'image/png' });
 });
 
-test('CT-05: demonstração possui dados fictícios e permite acesso', async ({ page }) => {
+test('CT-05: demonstração possui dados fictícios e permite acesso', async ({ page }, testInfo) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Preencher' }).click();
   await expect(page.getByLabel('E-mail')).toHaveValue('demo@pulsedesk.dev');
   await page.getByRole('button', { name: 'Entrar no painel' }).click();
   await expect(page.getByTestId('stat-total')).toHaveText('3');
+  await testInfo.attach('painel-demo', { body: await page.screenshot({ fullPage: true }), contentType: 'image/png' });
 });

@@ -25,9 +25,9 @@ jobs:
       - run: npm test
       - run: npx playwright install --with-deps ${{ matrix.browser }}
       - run: npx playwright test --project=${{ matrix.browser }}
-      - name: Salvar evidências se houver falha
+      - name: Guardar relatório e capturas
         uses: actions/upload-artifact@v4
-        if: failure()
+        if: always()
         with:
           name: playwright-${{ matrix.browser }}
           path: |
