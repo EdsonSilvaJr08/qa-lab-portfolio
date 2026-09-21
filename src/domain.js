@@ -8,20 +8,46 @@ export function normalizeEmail(value) {
   return String(value ?? '').trim().toLowerCase();
 }
 
+/** Regra adotada PARA ESTE LAB: nomes podem conter letras Unicode, espaços, hífen e apóstrofo, mas não números. */
+export function normalizeName(value) {
+  return String(value ?? '').trim().replace(/\s+/gu, ' ');
+}
+
+const NAME_PATTERN = /^\p{L}[\p{L}\p{M}]*(?:[ '\u2019-]\p{L}[\p{L}\p{M}]*)*$/u;
+
+export function isValidEmail(value) {
+  const email = normalizeEmail(value);
+  if (email.length > 254 || email.length < 5) return false;
+  const parts = email.split('@');
+  if (parts.length !== 2) return false;
+  const [local, domain] = parts;
+  if (local.length < 1 || local.length > 64 || local.startsWith('.') || local.endsWith('.') || local.includes('..')) return false;
+  if (!/^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+$/.test(local)) return false;
+  const labels = domain.split('.');
+  if (labels.length < 2 || !/^[a-z]{2,63}$/.test(labels.at(-1))) return false;
+  return labels.every(label => label.length <= 63 && /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(label));
+}
+
 export function validateRegistration({ name = '', email = '', password = '', confirmation = '' }) {
   const errors = {};
-  const fullName = String(name).trim();
-  if (fullName.length < 2 || fullName.length > 60) errors.name = 'Informe um nome entre 2 e 60 caracteres.';
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizeEmail(email))) errors.email = 'Informe um e-mail válido.';
-  if (String(password).length < 8 || !/[a-zA-Z]/.test(password) || !/\d/.test(password)) errors.password = 'Use no mínimo 8 caracteres, com letras e números.';
+  const fullName = normalizeName(name);
+  if (fullName.length < 2 || fullName.length > 60) {
+    errors.name = 'Informe um nome entre 2 e 60 caracteres.';
+  } else if (!NAME_PATTERN.test(fullName)) {
+    errors.name = 'Use apenas letras, espaços, hífen ou apóstrofo no nome. Números não são permitidos.';
+  }
+  if (!isValidEmail(email)) errors.email = 'Informe um e-mail válido.';
+  if (typeof password !== 'string' || password.length < 8 || password.length > 128 || !/\p{L}/u.test(password) || !/\p{Nd}/u.test(password)) {
+    errors.password = 'Use de 8 a 128 caracteres, com letras e números.';
+  }
   if (confirmation !== password) errors.confirmation = 'As senhas não coincidem.';
   return errors;
 }
 
 export function validateLogin({ email = '', password = '' }) {
   const errors = {};
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizeEmail(email))) errors.email = 'Informe um e-mail válido.';
-  if (!password) errors.password = 'Informe sua senha.';
+  if (!isValidEmail(email)) errors.email = 'Informe um e-mail válido.';
+  if (typeof password !== 'string' || !password) errors.password = 'Informe sua senha.';
   return errors;
 }
 
