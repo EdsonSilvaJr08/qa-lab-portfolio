@@ -2,74 +2,61 @@
 
 [![QA | Testes automatizados](https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/workflows/qa.yml/badge.svg)](https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/workflows/qa.yml)
 
-**Laboratório educacional de QA com aplicação funcional, requisitos, testes manuais documentados, automação E2E e integração contínua.** Todos os dados são fictícios. Projeto desenvolvido com auxílio de IA para estudo e apresentação técnica.
+Aplicação fictícia de gerenciamento de chamados para estudo de QA manual, automação E2E, testes unitários e CI. Desenvolvido com auxílio de IA, com dados exclusivamente fictícios; não representa produto de produção ou cliente real.
 
-## Acesse online: aplicação e automação
+## Acessar e verificar
 
-- **[Abrir o PulseDesk](https://edsonsilvajr08.github.io/qa-lab-portfolio/)** — navegue pelo sistema de chamados.
-- **[Assistir à demonstração real da automação](https://edsonsilvajr08.github.io/qa-lab-portfolio/automacao.html)** — vídeo de um fluxo Playwright, cobertura e resultados históricos com links de comprovação.
-- **[Conferir execuções no GitHub Actions](https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/workflows/qa.yml)** — logs, status atual e relatórios anexados por navegador.
+- [Aplicação PulseDesk online](https://edsonsilvajr08.github.io/qa-lab-portfolio/): cadastro, login, chamados, filtros e indicadores.
+- [Vídeo e estudo técnico da automação](https://edsonsilvajr08.github.io/qa-lab-portfolio/automacao.html): gravação real de uma jornada demonstrativa, diferente da suíte E2E completa.
+- [GitHub Actions](https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/workflows/qa.yml): histórico de execuções, logs e relatórios. **Conferir o commit e resultado mais recente; um badge verde anterior não garante uma versão nova.**
 
-A página de demonstração usa um vídeo WebM gerado automaticamente no GitHub Actions pelo script `scripts/record-demo.mjs` e publicado em `assets/demo/`. **O vídeo mostra uma jornada de demonstração gravada, não a execução ao vivo de toda a suíte.** As dez verificações E2E oficiais ficam em `tests/e2e/` e rodam nos navegadores Chromium e Firefox.
+## Como executar
 
-## Escopo
-
-O PulseDesk permite cadastro, login, sessão por aba, criação de chamados, pesquisa, filtros, transição de status e indicadores. Inclui **27 testes unitários/de integração** e **dez cenários E2E por navegador**. O registro dos resultados realizados em 21/09/2026 está em [`docs/relatorio-de-execucao.md`](docs/relatorio-de-execucao.md); resultados após alterações devem ser conferidos na aba Actions.
-
-## Rodar localmente
-
-Requisitos: Node.js 20+ e npm. Não requer `.env` nem serviço externo.
+Node.js 20+ e npm; sem `.env` ou serviços externos.
 
 ```bash
 npm ci
 npm start
+# abrir http://127.0.0.1:4173
 ```
 
-Acesse http://127.0.0.1:4173. O botão **Preencher** oferece a conta fictícia `demo@pulsedesk.dev` / `Demo@12345`. Não utilize senhas ou dados reais.
-
-### Executar os testes
+Clique em **Preencher** para usar a conta fictícia de demonstração. Não use credenciais ou dados reais. Contas e tickets ficam no `localStorage` do seu próprio navegador; a sessão usa `sessionStorage`.
 
 ```bash
-npm test                                 # testes unitários, persistência simulada e HTTP
-npx playwright install chromium firefox   # preparar navegadores uma vez
-npm run test:e2e                         # 10 casos no Chromium + 10 no Firefox
-npm run test:e2e:ui                      # interface visual Playwright
-npm run test:e2e:report                  # relatório HTML local
-npm run check                            # unitários + E2E
+npm test                                # 45 casos de unidade/integração
+npx playwright install chromium firefox # instalação dos navegadores uma vez
+npm run test:e2e                        # 14 cenários em Chromium e Firefox
+npm run test:e2e:ui                     # interface visual do Playwright
+npm run test:e2e:report                 # abrir relatório HTML local
+npm run check                           # unidade/integração e E2E
 ```
 
-O workflow [QA | Testes automatizados](.github/workflows/qa.yml) executa testes no push da `main`, em pull requests e manualmente. Relatórios HTML e capturas ficam como artefatos por sete dias; não afirmar aprovação sem consultar a execução correspondente.
+Os números acima representam o conjunto **definido**, não um atestado permanente de aprovação. O pipeline executa a matriz nos dois navegadores a cada PR e push na `main`; consulte as execuções específicas e os artefatos temporários.
 
-### Regravar a demonstração
+## Estratégia e artefatos
 
-Após `npm ci` e `npx playwright install chromium`, execute `node scripts/record-demo.mjs` **com a porta 4173 livre**. O script inicia o servidor, executa e valida uma jornada de login, criação, busca e status e grava `assets/demo/automacao.webm` e `assets/demo/painel.png`. O workflow [Portfólio | Gravar demonstração](.github/workflows/demo.yml) reproduz esses passos no GitHub, disponibiliza artefatos temporários e publica o vídeo e a imagem no próprio repositório para uso no Pages; ele também pode ser iniciado manualmente na aba Actions.
-
-## Estrutura
-
-| Local | Responsabilidade |
+| Recurso | Local |
 |---|---|
-| `index.html`, `src/app.js`, `src/styles.css` | Aplicação e jornadas do usuário |
-| `automacao.html`, `src/showcase.css` | Vitrine pública de automação e evidências |
-| `assets/demo/` | Vídeo real e screenshot gerados no workflow de demonstração |
-| `scripts/record-demo.mjs` | Gravação e validação de jornada demonstrativa |
-| `src/domain.js`, `src/storage.js` | Regras e armazenamento fictício local |
-| `server.js` | Servidor HTTP para desenvolvimento e testes |
-| `tests/unit/`, `tests/e2e/` | Testes unitários e automação Playwright |
-| [`docs/requisitos.md`](docs/requisitos.md) | Requisitos e critérios de aceite |
-| [`docs/plano-de-testes.md`](docs/plano-de-testes.md) | Estratégia e rastreabilidade CT → RF |
-| [`docs/casos-de-teste-manuais.md`](docs/casos-de-teste-manuais.md) | Casos manuais documentados, ainda não executados |
-| [`docs/modelo-bug-report.md`](docs/modelo-bug-report.md) | Modelo sem defeitos inventados |
-| [`docs/relatorio-de-execucao.md`](docs/relatorio-de-execucao.md) | Histórico de evidências e limites |
-| `.github/workflows/qa.yml`, `.github/workflows/demo.yml` | CI de regressão e gravação demonstrativa |
+| Interface e regras | `index.html`, `src/app.js`, `src/styles.css`, `src/domain.js` |
+| Persistência demonstrativa | `src/storage.js` |
+| Servidor estático | `server.js` |
+| Suíte unitária/de integração | `tests/unit/` |
+| Suíte E2E | `tests/e2e/` |
+| [Requisitos e critérios de aceite](docs/requisitos.md) | `docs/requisitos.md` |
+| [Plano de testes e rastreabilidade](docs/plano-de-testes.md) | `docs/plano-de-testes.md` |
+| [Casos manuais — ainda não executados](docs/casos-de-teste-manuais.md) | `docs/casos-de-teste-manuais.md` |
+| [Regressão manual — ainda não executada](docs/roteiros-regressao-validacoes.md) | `docs/roteiros-regressao-validacoes.md` |
+| [Auditoria de validações e regressão](docs/auditoria-validacoes.md) | `docs/auditoria-validacoes.md` |
+| [Relatório de execução](docs/relatorio-de-execucao.md) | `docs/relatorio-de-execucao.md` |
+| [Modelo de bug report](docs/modelo-bug-report.md) | `docs/modelo-bug-report.md` |
+| Workflows | `.github/workflows/qa.yml` e `.github/workflows/demo.yml` |
 
-## Decisões e limitações
+### Revisão de validações de 21/09/2026
 
-**Frontend-only por decisão de escopo:** PBKDF2/Web Crypto com sal evita persistir a senha de demonstração em texto, mas `localStorage`/`sessionStorage` são controlados pelo navegador e não equivalem a autenticação segura de produção. Não existem backend, API REST, banco remoto ou dados compartilhados entre visitantes. A sessão é limitada à aba; limpar o armazenamento reinicia o laboratório.
+Após relato de aceitação de números no campo Nome, foram definidas e implementadas regras de caracteres do nome (Unicode, acentos, espaços, hífen e apóstrofo; sem dígitos), formato comum de e-mail, limite superior de senha, validação na persistência, proteção ao ler armazenamento inválido e regressões dos limites de tickets. Veja a [auditoria com causa e limites](docs/auditoria-validacoes.md). O formulário permite digitar e colar qualquer texto, mas **rejeita entradas inválidas ao enviar, com explicação no campo**.
 
-O CT-10 verifica que conteúdo HTML digitado em chamado é exibido como texto. Auditoria completa de acessibilidade, segurança de produção, carga e API ficam fora do escopo. Não apresentar casos manuais como executados, defeitos hipotéticos como encontrados nem atribuir experiência profissional ou autoria manual exclusiva a este projeto.
+## Limitações técnicas
 
-**Possíveis evoluções:** backend/API REST demonstrativos, testes de contrato, auditoria axe e melhorias de UX — apenas após implementação e verificação.
+Frontend-only: não possui backend, API, banco compartilhado, controle de acesso real ou autenticação de produção. PBKDF2 local não fornece segurança de servidor. Teste de exibição de HTML não substitui pentest; não há auditoria abrangente de acessibilidade, segurança ou performance. Usuários cadastrados anteriormente não são migrados automaticamente. Os roteiros manuais não são tratados como executados sem evidências. Alterações futuras exigem nova verificação.
 
----
-
-**Portfólio:** [Edson Silva Jr.](https://github.com/EdsonSilvaJr08). Projeto educacional desenvolvido com auxílio de IA.
+**Portfólio:** [Edson Silva Jr.](https://github.com/EdsonSilvaJr08). Projeto educacional construído com auxílio de IA para estudo e explicação técnica; não atribuir autoria manual exclusiva ou experiência profissional originada deste laboratório.
