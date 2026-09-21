@@ -1,4 +1,4 @@
-import { normalizeEmail, makeTicket } from './domain.js';
+import { normalizeEmail, normalizeName, validateRegistration, makeTicket, PRIORITIES, STATUSES } from './domain.js';
 
 // Demo local sem backend. Nunca utilize senha real.
 const USERS_KEY = 'pulsedesk:v1:users';
@@ -17,14 +17,22 @@ async function derivePassword(password, salt) {
 
 export function getUsers() {
   const users = readJson(localStorage, USERS_KEY, []);
-  return Array.isArray(users) ? users : [];
+  return Array.isArray(users) ? users.filter(user => user &&
+    typeof user.id === 'string' && typeof user.name === 'string' && typeof user.email === 'string' &&
+    typeof user.salt === 'string' && /^[0-9a-f]{32}$/.test(user.salt) &&
+    typeof user.hash === 'string' && /^[0-9a-f]{64}$/.test(user.hash)) : [];
 }
 
 export async function registerUser({ name, email, password }) {
+  // A UI não é a única entrada possível: nunca confiar exclusivamente na validação do formulário.
+  const errors = validateRegistration({ name, email, password, confirmation: password });
+  if (Object.keys(errors).length) throw new Error('Dados de cadastro inválidos.');
   const normalized = normalizeEmail(email);
   if (getUsers().some(user => user.email === normalized)) throw new Error('Este e-mail já está cadastrado.');
   const salt = toHex(crypto.getRandomValues(new Uint8Array(16)));
-  const user = { id: crypto.randomUUID(), name: name.trim(), email: normalized, salt, hash: await derivePassword(password, salt) };
+  const user = { id: crypto.randomUUID(), name: normalizeName(name), email: normalized, salt, hash: await derivePassword(password, salt) };
+  // Revalidar após await para evitar duplicidades em duas chamadas simultâneas nesta aba.
+  if (getUsers().some(existing => existing.email === normalized)) throw new Error('Este e-mail já está cadastrado.');
   localStorage.setItem(USERS_KEY, JSON.stringify([...getUsers(), user]));
   localStorage.setItem(ticketsKey(user.id), JSON.stringify([]));
   return { id: user.id, name: user.name, email: user.email };
@@ -45,7 +53,12 @@ export function setSession(user) { sessionStorage.setItem(SESSION_KEY, user.id);
 export function clearSession() { sessionStorage.removeItem(SESSION_KEY); }
 export function getTickets(userId) {
   const tickets = readJson(localStorage, ticketsKey(userId), []);
-  return Array.isArray(tickets) ? tickets : [];
+  // Dados de localStorage podem ter sido alterados/corrompidos; não renderizar propriedades livres em classes HTML.
+  return Array.isArray(tickets) ? tickets.filter(ticket => ticket &&
+    typeof ticket.id === 'string' && ticket.id.length > 0 && ticket.id.length <= 60 &&
+    typeof ticket.title === 'string' && typeof ticket.description === 'string' &&
+    PRIORITIES.includes(ticket.priority) && STATUSES.includes(ticket.status) &&
+    typeof ticket.createdAt === 'string' && !Number.isNaN(Date.parse(ticket.createdAt))) : [];
 }
 export function saveTickets(userId, tickets) { localStorage.setItem(ticketsKey(userId), JSON.stringify(tickets)); }
 
