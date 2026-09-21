@@ -3,51 +3,140 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Veja uma demonstração real da automação Playwright do PulseDesk e confira os testes no GitHub Actions." />
-  <meta name="theme-color" content="#152037" />
-  <title>Automação de testes | PulseDesk QA Lab</title>
+  <meta name="description" content="Estudo de QA do PulseDesk: escopo, vídeo de uma jornada Playwright, casos de teste e evidências de execução." />
+  <meta name="theme-color" content="#fafaf8" />
+  <title>Estudo de QA e automação — PulseDesk</title>
   <link rel="stylesheet" href="./src/showcase.css" />
 </head>
 <body>
-  <header class="topbar wrap">
-    <a class="brand" href="./" aria-label="Voltar ao PulseDesk"><span class="brand-icon">⌁</span><span>pulse<strong>desk</strong><small>QA LAB / PORTFÓLIO</small></span></a>
-    <nav aria-label="Navegação do portfólio"><a href="./">Abrir aplicação</a><a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio" target="_blank" rel="noopener noreferrer">Código no GitHub ↗</a></nav>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="identity" href="./" aria-label="Abrir aplicação PulseDesk"><span class="identity-mark">P.</span><span>PulseDesk <span class="identity-sub">/ QA Lab</span></span></a>
+      <nav class="header-nav" aria-label="Navegação principal">
+        <a href="./">Aplicação</a>
+        <a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio" target="_blank" rel="noopener noreferrer">Repositório <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
   </header>
-  <main>
-    <section class="hero wrap">
-      <span class="eyebrow"><span class="pulse-dot"></span> CASE DE QUALIDADE · DEMONSTRAÇÃO REAL</span>
-      <h1>Não é só código. <em>É teste em execução.</em></h1>
-      <p>Veja o Playwright percorrer uma jornada do PulseDesk. A gravação é uma demonstração automatizada; a execução oficial dos casos E2E, os logs e o histórico de aprovação estão disponíveis no GitHub Actions.</p>
-      <div class="actions"><a class="btn primary" href="#video">▶ Assistir à demonstração</a><a class="btn secondary" href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/workflows/qa.yml" target="_blank" rel="noopener noreferrer">Conferir execuções ↗</a></div>
-    </section>
-    <section class="wrap" id="video" aria-labelledby="video-heading">
-      <div class="section-label">01 / EXECUÇÃO VISUAL</div>
-      <div class="section-heading"><h2 id="video-heading">Acompanhe o fluxo no navegador</h2><span class="chip">Gravação de um fluxo automatizado</span></div>
-      <div class="video-card">
-        <div class="video-top"><span class="lights"><i></i><i></i><i></i></span><span>PulseDesk · Chromium · Playwright</span><span>● Demo gravada</span></div>
-        <video id="demo-video" controls playsinline preload="metadata" poster="./assets/demo/painel.png" aria-label="Gravação da automação de demonstração do PulseDesk">
-          <source src="./assets/demo/automacao.webm" type="video/webm" />
-          Seu navegador não suporta vídeo WebM. Confira as evidências no GitHub Actions.
-        </video>
-        <p id="video-fallback" hidden>O vídeo ainda não está disponível nesta publicação. Você pode acompanhar os testes reais e baixar as evidências no <a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions">GitHub Actions</a>.</p>
-        <div class="video-caption"><strong>Fluxo mostrado:</strong> login na conta de demonstração → criação e validação de um chamado → busca → mudança de status. <span>A velocidade do vídeo reflete pausas inseridas somente para facilitar a visualização.</span></div>
+
+  <main id="conteudo" class="container">
+    <div class="breadcrumb"><a href="./">PulseDesk</a><span aria-hidden="true">/</span><span>Estudo de QA</span></div>
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">PROJETO PRÁTICO · QUALIDADE DE SOFTWARE</p>
+        <h1 id="page-title">Testes e automação do PulseDesk</h1>
+        <p class="lead">Aplicação demonstrativa de gerenciamento de chamados usada para exercitar validações, persistência de dados e fluxos de ponta a ponta. Aqui estão a gravação de uma jornada, os testes implementados e as evidências de execução.</p>
+        <div class="intro-links">
+          <a class="primary-link" href="#gravacao">Assistir à execução <span aria-hidden="true">↓</span></a>
+          <a class="plain-link" href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/workflows/qa.yml" target="_blank" rel="noopener noreferrer">Histórico no GitHub Actions ↗</a>
+        </div>
       </div>
+      <dl class="project-facts" aria-label="Informações do projeto">
+        <div><dt>Ferramentas</dt><dd>JavaScript · Playwright · GitHub Actions</dd></div>
+        <div><dt>Ambiente</dt><dd>Aplicação demonstrativa, com dados fictícios</dd></div>
+        <div><dt>Execução E2E</dt><dd>Chromium e Firefox</dd></div>
+        <div><dt>Referência dos resultados</dt><dd>21 set. 2026</dd></div>
+      </dl>
     </section>
-    <section class="wrap section" aria-labelledby="results-heading">
-      <div class="section-label">02 / RESULTADOS COMPROVÁVEIS</div>
-      <h2 id="results-heading">Testes automatizados com histórico verificável</h2>
-      <p class="section-copy">A execução abaixo foi verificada em 21/09/2026. Não é um contador em tempo real: alterações futuras devem ser conferidas no histórico de Actions.</p>
-      <div class="metrics"><div class="metric"><strong>27/27</strong><span>Testes de unidade/integração</span></div><div class="metric"><strong>10/10</strong><span>E2E no Chromium</span></div><div class="metric"><strong>10/10</strong><span>E2E no Firefox</span></div></div>
-      <div class="verified"><span>CI atual:</span><a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/workflows/qa.yml" target="_blank" rel="noopener noreferrer"><img src="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/workflows/qa.yml/badge.svg" alt="Status atual do workflow QA no GitHub Actions" /></a><a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/runs/35639393855" target="_blank" rel="noopener noreferrer">Abrir execução comprovada de 21/09/2026 ↗</a></div>
-    </section>
-    <section class="wrap section" aria-labelledby="cases-heading">
-      <div class="section-label">03 / COBERTURA</div><h2 id="cases-heading">O que o Playwright verifica?</h2>
-      <div class="cases"><article><span>CT-01 a CT-05</span><h3>Autenticação e cadastro</h3><p>Registro, validações, e-mail duplicado, credenciais inválidas e usuário fictício de demonstração.</p><a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/blob/main/tests/e2e/auth.spec.js" target="_blank" rel="noopener noreferrer">Ver código dos testes ↗</a></article><article><span>CT-06 a CT-10</span><h3>Chamados e segurança de exibição</h3><p>Validação do formulário, criação e persistência, filtros, status e tratamento de HTML fornecido pelo usuário.</p><a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/blob/main/tests/e2e/tickets.spec.js" target="_blank" rel="noopener noreferrer">Ver código dos testes ↗</a></article></div>
-      <div class="footnote"><strong>Transparência:</strong> a aplicação é um protótipo frontend-only com dados locais fictícios. O vídeo é uma gravação de uma jornada demonstrativa, não uma execução interativa ou ao vivo. Os testes manuais estão documentados, mas não são declarados como executados. Este case não representa um sistema em produção.</div>
-    </section>
-    <section class="closing wrap"><div><span class="section-label">EXPLORE MAIS</span><h2>Quer testar a aplicação você mesmo?</h2><p>Entre com a conta fictícia, crie um chamado e acompanhe os cenários no repositório.</p></div><a class="btn primary" href="./">Abrir PulseDesk ↗</a></section>
+
+    <div class="content-layout">
+      <article class="article">
+        <section class="section" id="gravacao" aria-labelledby="gravacao-title">
+          <p class="section-index">01 — Demonstração</p>
+          <h2 id="gravacao-title">Uma jornada gravada com Playwright</h2>
+          <p>O script de demonstração executa o login com dados fictícios, cria um chamado, confere seu resultado, pesquisa o registro e altera seu status. A gravação foi produzida pelo navegador durante a execução do script; não é uma animação.</p>
+          <figure class="recording">
+            <video id="demo-video" controls playsinline preload="metadata" poster="./assets/demo/painel.png" aria-label="Gravação de uma jornada automatizada no PulseDesk">
+              <source src="./assets/demo/automacao.webm" type="video/webm" />
+              Seu navegador não suporta o vídeo. Use o link abaixo para acessar o arquivo.
+            </video>
+            <figcaption><span>Gravação: fluxo demonstrativo no Chromium. As pausas servem apenas para facilitar a visualização.</span><a href="./assets/demo/automacao.webm">Abrir vídeo WebM ↗</a></figcaption>
+            <p id="video-fallback" class="video-fallback" hidden>Não foi possível carregar a gravação neste navegador. <a href="./assets/demo/automacao.webm">Abra o vídeo diretamente</a> ou consulte <a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/runs/35642084935">o registro da geração no GitHub Actions</a>.</p>
+          </figure>
+          <p class="note">O vídeo documenta um fluxo específico. Ele não substitui os dez cenários da suíte oficial nem é uma execução ao vivo.</p>
+        </section>
+
+        <section class="section" id="resultados" aria-labelledby="resultados-title">
+          <p class="section-index">02 — Execução</p>
+          <h2 id="resultados-title">Resultados registrados</h2>
+          <p>Na execução verificada em <strong>21/09/2026</strong>, a suíte foi aprovada nos dois navegadores. Os números abaixo são um registro histórico, não uma medição atualizada automaticamente.</p>
+          <div class="table-scroll"><table class="results-table">
+            <caption class="sr-only">Resultados dos testes na execução de 21 de setembro de 2026</caption>
+            <thead><tr><th scope="col">Conjunto</th><th scope="col">Resultado</th><th scope="col">Ambiente</th></tr></thead>
+            <tbody>
+              <tr><td>Unidade e integração</td><td><span class="pass">27 de 27 aprovados</span></td><td>Node.js; executados em cada job</td></tr>
+              <tr><td>Ponta a ponta (E2E)</td><td><span class="pass">10 de 10 aprovados</span></td><td>Chromium</td></tr>
+              <tr><td>Ponta a ponta (E2E)</td><td><span class="pass">10 de 10 aprovados</span></td><td>Firefox</td></tr>
+            </tbody>
+          </table></div>
+          <div class="evidence-links">
+            <a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/runs/35641967789" target="_blank" rel="noopener noreferrer">Consultar execução validada ↗</a>
+            <a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/workflows/qa.yml" target="_blank" rel="noopener noreferrer">Ver resultados mais recentes ↗</a>
+          </div>
+        </section>
+
+        <section class="section" id="cobertura" aria-labelledby="cobertura-title">
+          <p class="section-index">03 — Cobertura</p>
+          <h2 id="cobertura-title">Cenários automatizados</h2>
+          <p>Os testes foram separados em dois arquivos por fluxo funcional. O identificador de cada cenário permite consultar o código e relacioná-lo aos requisitos documentados.</p>
+          <div class="coverage-group">
+            <div class="coverage-heading"><h3>Cadastro e autenticação</h3><a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/blob/main/tests/e2e/auth.spec.js" target="_blank" rel="noopener noreferrer">auth.spec.js ↗</a></div>
+            <ol class="scenario-list">
+              <li><span>CT-01</span><span>Cadastro, login, persistência da sessão e saída</span></li>
+              <li><span>CT-02</span><span>Campos obrigatórios e confirmação de senha</span></li>
+              <li><span>CT-03</span><span>Bloqueio de cadastro com e-mail duplicado</span></li>
+              <li><span>CT-04</span><span>Rejeição de credenciais inválidas</span></li>
+              <li><span>CT-05</span><span>Acesso à conta fictícia de demonstração</span></li>
+            </ol>
+          </div>
+          <div class="coverage-group">
+            <div class="coverage-heading"><h3>Gerenciamento de chamados</h3><a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/blob/main/tests/e2e/tickets.spec.js" target="_blank" rel="noopener noreferrer">tickets.spec.js ↗</a></div>
+            <ol class="scenario-list">
+              <li><span>CT-06</span><span>Validação dos campos de um chamado</span></li>
+              <li><span>CT-07</span><span>Criação, indicadores e persistência após recarga</span></li>
+              <li><span>CT-08</span><span>Pesquisa por texto e filtro de status</span></li>
+              <li><span>CT-09</span><span>Atualização de status e totais do painel</span></li>
+              <li><span>CT-10</span><span>Exibição de HTML digitado como texto, sem execução</span></li>
+            </ol>
+          </div>
+          <p class="reference">Documentação complementar: <a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/blob/main/docs/requisitos.md">requisitos</a>, <a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/blob/main/docs/plano-de-testes.md">plano de testes</a> e <a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/blob/main/docs/casos-de-teste-manuais.md">casos manuais</a>.</p>
+        </section>
+
+        <section class="section" id="decisoes" aria-labelledby="decisoes-title">
+          <p class="section-index">04 — Escopo e decisões</p>
+          <h2 id="decisoes-title">Como interpretar este estudo</h2>
+          <dl class="decision-list">
+            <div><dt>Fluxos escolhidos</dt><dd>Cadastro, autenticação e chamados concentram os comportamentos de validação, estado e persistência exercitados neste laboratório.</dd></div>
+            <div><dt>Execuções independentes</dt><dd>Os cenários E2E utilizam contextos de navegador isolados para evitar que os dados de um teste interfiram nos seguintes.</dd></div>
+            <div><dt>O que não foi validado</dt><dd>Os casos manuais estão escritos, mas ainda não há registro de execução manual. Não foram realizados testes de carga, auditoria abrangente de acessibilidade nem avaliação de segurança para produção.</dd></div>
+            <div><dt>Limitação do sistema</dt><dd>O PulseDesk não possui backend ou banco de dados compartilhado. As contas e os chamados são fictícios e ficam no armazenamento local de cada navegador; não utilize dados ou senhas reais.</dd></div>
+          </dl>
+        </section>
+
+        <section class="end-section" aria-labelledby="proximo-title">
+          <h2 id="proximo-title">Explore o projeto</h2>
+          <p>Você pode navegar na aplicação, consultar os testes implementados e reproduzir a execução a partir das instruções do repositório.</p>
+          <div class="intro-links"><a class="primary-link" href="./">Abrir aplicação ↗</a><a class="plain-link" href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio#rodar-localmente" target="_blank" rel="noopener noreferrer">Código e instruções ↗</a></div>
+        </section>
+      </article>
+
+      <aside class="sidebar" aria-label="Navegação e evidências">
+        <div class="sidebar-panel">
+          <h2>Nesta página</h2>
+          <nav class="page-nav" aria-label="Seções do estudo"><a href="#gravacao">01. Gravação</a><a href="#resultados">02. Resultados</a><a href="#cobertura">03. Cenários E2E</a><a href="#decisoes">04. Escopo e decisões</a></nav>
+        </div>
+        <div class="sidebar-panel">
+          <h2>Evidências</h2>
+          <a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/runs/35641967789" target="_blank" rel="noopener noreferrer">Execução da suíte ↗</a>
+          <a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/runs/35642084935" target="_blank" rel="noopener noreferrer">Geração do vídeo ↗</a>
+          <a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/blob/main/docs/relatorio-de-execucao.md" target="_blank" rel="noopener noreferrer">Relatório documentado ↗</a>
+        </div>
+      </aside>
+    </div>
   </main>
-  <footer class="footer wrap">PulseDesk · QA Lab · Projeto educacional desenvolvido com auxílio de IA <a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio">GitHub ↗</a></footer>
+
+  <footer class="site-footer"><div class="container footer-inner"><span>PulseDesk · Estudo educacional de QA</span><span>Projeto de Edson Silva Jr. desenvolvido com auxílio de IA; dados e cenários fictícios.</span></div></footer>
   <script>
     const video = document.querySelector('#demo-video');
     const fallback = document.querySelector('#video-fallback');
