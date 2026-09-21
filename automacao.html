@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Veja uma demonstração real da automação Playwright do PulseDesk e confira os testes no GitHub Actions." />
+  <meta name="theme-color" content="#152037" />
+  <title>Automação de testes | PulseDesk QA Lab</title>
+  <link rel="stylesheet" href="./src/showcase.css" />
+</head>
+<body>
+  <header class="topbar wrap">
+    <a class="brand" href="./" aria-label="Voltar ao PulseDesk"><span class="brand-icon">⌁</span><span>pulse<strong>desk</strong><small>QA LAB / PORTFÓLIO</small></span></a>
+    <nav aria-label="Navegação do portfólio"><a href="./">Abrir aplicação</a><a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio" target="_blank" rel="noopener noreferrer">Código no GitHub ↗</a></nav>
+  </header>
+  <main>
+    <section class="hero wrap">
+      <span class="eyebrow"><span class="pulse-dot"></span> CASE DE QUALIDADE · DEMONSTRAÇÃO REAL</span>
+      <h1>Não é só código. <em>É teste em execução.</em></h1>
+      <p>Veja o Playwright percorrer uma jornada do PulseDesk. A gravação é uma demonstração automatizada; a execução oficial dos casos E2E, os logs e o histórico de aprovação estão disponíveis no GitHub Actions.</p>
+      <div class="actions"><a class="btn primary" href="#video">▶ Assistir à demonstração</a><a class="btn secondary" href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/workflows/qa.yml" target="_blank" rel="noopener noreferrer">Conferir execuções ↗</a></div>
+    </section>
+    <section class="wrap" id="video" aria-labelledby="video-heading">
+      <div class="section-label">01 / EXECUÇÃO VISUAL</div>
+      <div class="section-heading"><h2 id="video-heading">Acompanhe o fluxo no navegador</h2><span class="chip">Gravação de um fluxo automatizado</span></div>
+      <div class="video-card">
+        <div class="video-top"><span class="lights"><i></i><i></i><i></i></span><span>PulseDesk · Chromium · Playwright</span><span>● Demo gravada</span></div>
+        <video id="demo-video" controls playsinline preload="metadata" poster="./assets/demo/painel.png" aria-label="Gravação da automação de demonstração do PulseDesk">
+          <source src="./assets/demo/automacao.webm" type="video/webm" />
+          Seu navegador não suporta vídeo WebM. Confira as evidências no GitHub Actions.
+        </video>
+        <p id="video-fallback" hidden>O vídeo ainda não está disponível nesta publicação. Você pode acompanhar os testes reais e baixar as evidências no <a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions">GitHub Actions</a>.</p>
+        <div class="video-caption"><strong>Fluxo mostrado:</strong> login na conta de demonstração → criação e validação de um chamado → busca → mudança de status. <span>A velocidade do vídeo reflete pausas inseridas somente para facilitar a visualização.</span></div>
+      </div>
+    </section>
+    <section class="wrap section" aria-labelledby="results-heading">
+      <div class="section-label">02 / RESULTADOS COMPROVÁVEIS</div>
+      <h2 id="results-heading">Testes automatizados com histórico verificável</h2>
+      <p class="section-copy">A execução abaixo foi verificada em 21/09/2026. Não é um contador em tempo real: alterações futuras devem ser conferidas no histórico de Actions.</p>
+      <div class="metrics"><div class="metric"><strong>27/27</strong><span>Testes de unidade/integração</span></div><div class="metric"><strong>10/10</strong><span>E2E no Chromium</span></div><div class="metric"><strong>10/10</strong><span>E2E no Firefox</span></div></div>
+      <div class="verified"><span>CI atual:</span><a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/workflows/qa.yml" target="_blank" rel="noopener noreferrer"><img src="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/workflows/qa.yml/badge.svg" alt="Status atual do workflow QA no GitHub Actions" /></a><a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/actions/runs/35639393855" target="_blank" rel="noopener noreferrer">Abrir execução comprovada de 21/09/2026 ↗</a></div>
+    </section>
+    <section class="wrap section" aria-labelledby="cases-heading">
+      <div class="section-label">03 / COBERTURA</div><h2 id="cases-heading">O que o Playwright verifica?</h2>
+      <div class="cases"><article><span>CT-01 a CT-05</span><h3>Autenticação e cadastro</h3><p>Registro, validações, e-mail duplicado, credenciais inválidas e usuário fictício de demonstração.</p><a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/blob/main/tests/e2e/auth.spec.js" target="_blank" rel="noopener noreferrer">Ver código dos testes ↗</a></article><article><span>CT-06 a CT-10</span><h3>Chamados e segurança de exibição</h3><p>Validação do formulário, criação e persistência, filtros, status e tratamento de HTML fornecido pelo usuário.</p><a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio/blob/main/tests/e2e/tickets.spec.js" target="_blank" rel="noopener noreferrer">Ver código dos testes ↗</a></article></div>
+      <div class="footnote"><strong>Transparência:</strong> a aplicação é um protótipo frontend-only com dados locais fictícios. O vídeo é uma gravação de uma jornada demonstrativa, não uma execução interativa ou ao vivo. Os testes manuais estão documentados, mas não são declarados como executados. Este case não representa um sistema em produção.</div>
+    </section>
+    <section class="closing wrap"><div><span class="section-label">EXPLORE MAIS</span><h2>Quer testar a aplicação você mesmo?</h2><p>Entre com a conta fictícia, crie um chamado e acompanhe os cenários no repositório.</p></div><a class="btn primary" href="./">Abrir PulseDesk ↗</a></section>
+  </main>
+  <footer class="footer wrap">PulseDesk · QA Lab · Projeto educacional desenvolvido com auxílio de IA <a href="https://github.com/EdsonSilvaJr08/qa-lab-portfolio">GitHub ↗</a></footer>
+  <script>
+    const video = document.querySelector('#demo-video');
+    const fallback = document.querySelector('#video-fallback');
+    const showFallback = () => { video.hidden = true; fallback.hidden = false; };
+    video.addEventListener('error', showFallback);
+    video.querySelector('source').addEventListener('error', showFallback);
+  </script>
+</body>
+</html>
